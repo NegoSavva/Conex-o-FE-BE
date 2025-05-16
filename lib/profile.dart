@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'main.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -15,33 +16,34 @@ class Profile extends StatelessWidget {
           child: Text('Voltar para a Tela 1'),
         ),
       ),
+      // RODAPÉ (Layout Inferior)
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue[50],
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
                 icon: Icon(Icons.home),
                 onPressed: () {
-                  // Aqui você já está na Home
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Você já está na tela inicial.')),
-                  );
-                },
-              ),
-              IconButton(
-                icon: Icon(Icons.settings),
-                onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Profile()),
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
                   );
                 },
               ),
               IconButton(
-                icon: Icon(Icons.info),
+                icon: Icon(Icons.person_2_sharp),
+                onPressed: () {
+                  // Aqui você já está na Home
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Você já está na tela de usuário.')),
+                  );
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.qr_code_scanner_sharp),
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Informações do app.')),
