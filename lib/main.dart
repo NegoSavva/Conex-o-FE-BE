@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'qr_code.dart';
 import 'profile.dart';
 import 'tela2.dart';
 
@@ -22,22 +23,58 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Aba inicial')),
+      // Tiramos a AppBar nativa
+      // appBar: AppBar(title: Text('Aba inicial')),
 
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navegar para a Tela 2 (SecondScreen)
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Tela2()),
-            );
-          },
-          child: Text('Ir para a Tela 2'),
-        ),
+      body: Column(
+        children: [
+          // Custom AppBar em um Container
+          Container(
+            padding: EdgeInsets.only(top: 40, left: 16, right: 16, bottom: 20),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(36),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 8,
+                  offset: Offset(0, 2),
+                )
+              ],
+            ),
+            child: Center(
+              child: Text(
+                'Aba inicial',
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+
+          // Conteúdo principal
+          Expanded(
+            child: Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Tela2()),
+                  );
+                },
+                child: Text('Ir para a Tela 2'),
+              ),
+            ),
+          ),
+        ],
       ),
 
-      // RODAPÉ (Layout Inferior)
+      // Rodapé (sem alterações)
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue[50],
         child: Padding(
@@ -57,17 +94,20 @@ class HomeScreen extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.home),
                 onPressed: () {
-                  // Aqui você já está na Home
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Você já está na tela inicial.')),
+                    SnackBar(
+                      content: Text('Você já está na tela inicial.'),
+                      duration: Duration(seconds: 2),
+                    ),
                   );
                 },
               ),
               IconButton(
                 icon: Icon(Icons.qr_code_scanner_sharp),
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Informações do app.')),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Qrcode()),
                   );
                 },
               ),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:navegacao_entre_telas/qr_code.dart';
+import 'package:navegacao_entre_telas/profile.dart';
 import 'main.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class Qrcode extends StatelessWidget {
+  const Qrcode({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Perfil')),
+      appBar: AppBar(title: Text('QRCODE')),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
@@ -35,23 +35,23 @@ class Profile extends StatelessWidget {
                 },
               ),
               IconButton(
-                icon: Icon(Icons.person_2_sharp),
+                icon: Icon(Icons.qr_code_scanner_sharp),
                 onPressed: () {
-                  // Aqui você já está na Home
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Você já está na tela de usuário.'),
+                      content: Text('Você já está na tela.'),
                       duration:
-                          Duration(seconds: 2),),
+                          Duration(seconds: 2),
+                      ),
                   );
                 },
               ),
               IconButton(
-                icon: Icon(Icons.qr_code_scanner_sharp),
+                icon: Icon(Icons.person_2_sharp),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Qrcode()),
+                    MaterialPageRoute(builder: (context) => Profile()),
                   );
                 },
               ),
