@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navegacao_entre_telas/qrCode.dart';
 import 'main.dart';
 
 class Profile extends StatelessWidget {
@@ -45,8 +46,9 @@ class Profile extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.qr_code_scanner_sharp),
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Informações do app.')),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Qrcode()),
                   );
                 },
               ),

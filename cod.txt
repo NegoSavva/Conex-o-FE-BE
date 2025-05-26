@@ -1,0 +1,4 @@
+git config --global --add safe.directory '*'
+flutter --disable-telemetry
+
+flutter config --no -analytics
