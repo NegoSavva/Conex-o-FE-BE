@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:navegacao_entre_telas/profile.dart';
-import 'package:navegacao_entre_telas/qrcodeinfo.dart';
+import 'package:navegacao_entre_telas/qrCode.dart';
 import 'main.dart';
+import 'profile.dart';
 
-class Qrcode extends StatelessWidget {
-  const Qrcode({super.key});
+class QrcodeInfoPage extends StatelessWidget {
+  const QrcodeInfoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Corpo
       body: Column(
         children: [
           // TOPO com gradiente
@@ -30,12 +29,9 @@ class Qrcode extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.white),
+                  icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (_) => const HomeScreen()),
-                    );
+                    Navigator.pop(context);
                   },
                 ),
                 Column(
@@ -58,12 +54,11 @@ class Qrcode extends StatelessWidget {
                     ),
                   ],
                 ),
-                // Logo substituindo a bolinha
                 Image.asset(
                   'assets/images/fiebof.png', // caminho da sua logo
                   width: 100,
                   height: 100,
-                 fit: BoxFit.contain,
+                fit: BoxFit.contain,
                 ),
               ],
             ),
@@ -85,7 +80,7 @@ class Qrcode extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const QrcodeInfoPage()),
+                MaterialPageRoute(builder: (context) => const Qrcode()),
               );
             },
             child: CircleAvatar(
@@ -95,11 +90,43 @@ class Qrcode extends StatelessWidget {
             ),
           ),
 
+          const SizedBox(height: 20),
+
+          // Caixa de mensagem
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              gradient: const LinearGradient(
+                colors: [Color(0xFF9C27B0), Color(0xFF7C4DFF)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.15),
+                  blurRadius: 6,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: const Text(
+              "Para validar a refeição, é\nnecessário passar o QR CODE no leitor.",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+
           const Spacer(),
         ],
       ),
 
-      // RODAPÉ atualizado
+      // Rodapé padronizado
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         shape: const CircularNotchedRectangle(),
@@ -113,7 +140,7 @@ class Qrcode extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => Profile()),
+                    MaterialPageRoute(builder: (_) => const Profile()),
                   );
                 },
               ),

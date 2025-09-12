@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:navegacao_entre_telas/profile.dart';
-import 'package:navegacao_entre_telas/qrcodeinfo.dart';
 import 'main.dart';
+import 'profile.dart';
+import 'qrCode.dart';
 
-class Qrcode extends StatelessWidget {
-  const Qrcode({super.key});
+class quintaPage extends StatelessWidget {
+  const quintaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Corpo
       body: Column(
         children: [
           // TOPO com gradiente
@@ -30,36 +29,20 @@ class Qrcode extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.arrow_back, color: Colors.white),
+                  icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (_) => const HomeScreen()),
-                    );
+                    Navigator.pop(context);
                   },
                 ),
-                Column(
-                  children: const [
-                    Text(
-                      "SEU",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    Text(
-                      "QR-CODE",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
+                const Text(
+                  "QUINTA",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
-                // Logo substituindo a bolinha
-                Image.asset(
+               Image.asset(
                   'assets/images/fiebof.png', // caminho da sua logo
                   width: 100,
                   height: 100,
@@ -69,37 +52,36 @@ class Qrcode extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 40),
+          const SizedBox(height: 30),
 
-          // QR CODE
-          Image.asset(
-            'assets/images/cod.png',
-            width: 180,
-            height: 180,
-          ),
+          // CONTEÚDO DO CARDÁPIO
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: ListView(
+                children: const [
+                _Section(
+  title: "Café da Manhã",
+  items: ["Leite com achocolatado", "Pão francês com margarina", "Maçã fatiada"],
+),
 
-          const SizedBox(height: 20),
+_Section(
+  title: "Almoço",
+  items: ["Arroz integral", "Feijão carioca", "Carne moída com legumes", "Salada de alface e tomate"],
+),
+_Section(
+  title: "Lanche da Tarde",
+  items: ["Iogurte natural", "Banana", "Bolacha de água e sal"],
+),
 
-          // Botão roxo com "!"
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const QrcodeInfoPage()),
-              );
-            },
-            child: CircleAvatar(
-              radius: 28,
-              backgroundColor: Colors.purpleAccent,
-              child: const Icon(Icons.error_outline, color: Colors.white, size: 32),
+                ],
+              ),
             ),
           ),
-
-          const Spacer(),
         ],
       ),
 
-      // RODAPÉ atualizado
+      // Rodapé padronizado
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         shape: const CircularNotchedRectangle(),
@@ -113,7 +95,7 @@ class Qrcode extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => Profile()),
+                    MaterialPageRoute(builder: (_) => const Profile()),
                   );
                 },
               ),
@@ -144,6 +126,43 @@ class Qrcode extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+// Widget reutilizável para cada seção
+class _Section extends StatelessWidget {
+  final String title;
+  final List<String> items;
+
+  const _Section({required this.title, required this.items});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 6),
+          ...items.map(
+            (e) => Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Text(
+                e,
+                style: const TextStyle(fontSize: 16),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
