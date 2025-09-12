@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+<<<<<<< HEAD
 class LoginAnimationPage extends StatefulWidget {
   const LoginAnimationPage({super.key});
 
@@ -53,6 +54,11 @@ class _LoginAnimationPageState extends State<LoginAnimationPage> {
     _senhaController.dispose();
     super.dispose();
   }
+=======
+// Tela 1 (HomeScreen)
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+>>>>>>> c9bf76dcc7edf3e53f2e2eaeeb4aa6d6b84540a0
 
   @override
   Widget build(BuildContext context) {

@@ -5,6 +5,7 @@ import 'main.dart';
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
+<<<<<<< HEAD
   @override
   State<Profile> createState() => _ProfileState();
 }
@@ -144,11 +145,50 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
+=======
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Perfil')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // vertical
+          crossAxisAlignment: CrossAxisAlignment.center, // horizontal
+          mainAxisSize: MainAxisSize.min, // evita esticar
+          children: [
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/images/profile.png'),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'João da Silva',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              'joao@email.com',
+              style: TextStyle(color: Colors.grey[700]),
+            ),
+            SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Função de editar perfil em breve!')),
+                );
+              },
+              child: Text('Editar Perfil'),
+            ),
+            SizedBox(height: 16),
+>>>>>>> c9bf76dcc7edf3e53f2e2eaeeb4aa6d6b84540a0
           ],
         ),
       ),
 
+<<<<<<< HEAD
       // Rodapé padronizado
+=======
+      // RODAPÉ
+>>>>>>> c9bf76dcc7edf3e53f2e2eaeeb4aa6d6b84540a0
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
         shape: const CircularNotchedRectangle(),
@@ -166,6 +206,7 @@ class _ProfileState extends State<Profile> {
                   );
                 },
               ),
+<<<<<<< HEAD
               Container(
                 decoration: const BoxDecoration(
                   color: Colors.black,
@@ -180,6 +221,18 @@ class _ProfileState extends State<Profile> {
                     );
                   },
                 ),
+=======
+              IconButton(
+                icon: Icon(Icons.person_2_sharp),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Você já está na tela de usuário.'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                },
+>>>>>>> c9bf76dcc7edf3e53f2e2eaeeb4aa6d6b84540a0
               ),
               IconButton(
                 icon: const Icon(Icons.qr_code_scanner),
